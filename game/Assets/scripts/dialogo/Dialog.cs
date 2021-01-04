@@ -2,25 +2,28 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
-public class interacao : MonoBehaviour
+[System.Serializable]
+public class Conversa
+{
+    public string dialog;
+    public bool _npcTalk;
+}
+public class Dialog : MonoBehaviour
 {
     [Header("Config")]
-    public string[] stock;
+    public Conversa[] stock;
     public string nomeNpc;
     public bool podeAbrir;
-    public float distMax;
     [Header("Imports")]
     public TextMeshProUGUI _textoDialogo;//texto para mostrar o dialogo
     public TextMeshProUGUI _textName;//texto para por o nome da pessoa que ta falano
     public GameObject _DiaObj;//obj do dialogo
-    public GameObject _intObj;
 
     private int index = 0;
     private int selected = 0;
     private char[] caracteres;
     private float Tempo, Distancia;
-    private bool open = false, inter;
+    private bool open = false;
     private GameObject pl;
 
     void Start()
@@ -32,30 +35,20 @@ public class interacao : MonoBehaviour
     void Update()
     {
         Distancia = Vector2.Distance(transform.position, pl.transform.position);
-        if (Distancia > distMax)
+        if (Distancia < 3)
+        {
+            podeAbrir = true;
+        }
+        else
         {
             podeAbrir = false;
         }
-
-        if (Distancia < distMax)
-        {
-            podeAbrir = true;
-            inter = true;
-            _intObj.SetActive(true);
-        }
-        else if (inter)
-        {
-            inter = false;
-            _intObj.SetActive(false);
-        }
-
         if (podeAbrir)
         {
             if (Input.GetKeyDown("e"))
             {
                 if (!open)
                 {
-                    inter = true;
                     MostrarDialog();
                 }
                 else
@@ -77,14 +70,16 @@ public class interacao : MonoBehaviour
 
     void MostrarDialog()
     {
-        FindObjectOfType<pMove>().enabled = false;
-        FindObjectOfType<pMove>().inputs.x = 0;
         index = 0;
         open = true;
         selected = 0;
         _textoDialogo.text = "";
         _DiaObj.SetActive(true);
-        caracteres = stock[0].ToCharArray();
+        caracteres = stock[0].dialog.ToCharArray();
+        if (stock[selected]._npcTalk)
+            _textName.text = "Nome:" + nomeNpc;
+        else
+            _textName.text = "Nada";
     }
 
     void Ditar()
@@ -99,7 +94,7 @@ public class interacao : MonoBehaviour
 
     void ProximoDialogo()
     {
-        if (Input.GetKeyDown("e") && selected >= stock.Length - 1)
+        if (Input.GetKeyDown("e") && selected > stock.Length - 1)
         {
             Fechar();
             return;
@@ -108,13 +103,12 @@ public class interacao : MonoBehaviour
         selected += 1;
         index = 0;
         _textoDialogo.text = "";
-        caracteres = stock[selected].ToCharArray();
+        caracteres = stock[selected].dialog.ToCharArray();
 
     }
     void Fechar()
     {
         open = false;
         _DiaObj.SetActive(false);
-        FindObjectOfType<pMove>().enabled = true;
     }
 }
