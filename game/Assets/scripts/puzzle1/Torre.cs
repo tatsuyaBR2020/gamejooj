@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Torre : MonoBehaviour
 {
@@ -57,5 +58,15 @@ public class Torre : MonoBehaviour
         j = true;
         yield return new WaitForSeconds(0.4f);
         j = false;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            var v = collision.gameObject.GetComponent<pLife>().vidas -= 1;
+            PlayerPrefs.SetInt("Vida", v - 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
