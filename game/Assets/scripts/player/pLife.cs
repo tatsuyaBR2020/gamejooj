@@ -4,33 +4,30 @@ using UnityEngine;
 
 public class pLife : MonoBehaviour
 {
-    public Transform lifeinicial;
     public GameObject vida;
     public int vidas = 1;
     public float Distancia;
-    public List<float> x = new List<float>();
+    public List<GameObject> x = new List<GameObject>();
 
     private void Start()
     {
-        reloadLifes();
+        AddVida();
     }
 
-    public void reloadLifes()
+    private void Update()
     {
-        x = new List<float>(vidas);
-        for(int i = 0;i < vidas; i++)
+        if (Input.GetKeyDown("r"))
         {
-            if(i == 0)
-            {
-                var obj = Instantiate(vida, lifeinicial.position, lifeinicial.rotation);
-                x[0] = obj.transform.position.x;
-                Debug.Log(x[0]);
-            }
-            if(i > 0)
-            {
-                var obj = Instantiate(vida,new Vector3(x[i - 1] +Distancia, 0, 0), transform.rotation);
-                x[i] = obj.transform.position.x;
-            }
+            AddVida();
         }
+    }
+
+    public void AddVida()
+    {
+        x.Add(vida);
+        int i = x.Count - 1;
+        x[i].transform.position = new Vector3(x[i].transform.position.x + Distancia,x[0].transform.position.y,0);
+        Instantiate(x[i],x[i].transform.position,transform.rotation);
+        Debug.Log("esta Funcionando");
     }
 }
