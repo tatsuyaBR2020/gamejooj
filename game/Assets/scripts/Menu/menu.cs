@@ -13,6 +13,8 @@ public class menu : MonoBehaviour
         animEffect.gameObject.SetActive(true);
         teleport.nomeCena = nomeCena;
         animEffect.SetTrigger("FadeIn");
+        PlayerPrefs.SetInt("Vida", 1);
+
     }
     public void quit()
     {

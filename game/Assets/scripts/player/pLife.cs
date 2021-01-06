@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class pLife : MonoBehaviour
 {
     public Transform point;
@@ -12,6 +11,7 @@ public class pLife : MonoBehaviour
 
     private void Start()
     {
+        vidas = PlayerPrefs.GetInt("Vida");
         for(int i = 0;i < vidas; i++)
         {
             AddVida();
@@ -45,7 +45,6 @@ public class pLife : MonoBehaviour
             x[0].transform.position = new Vector3(point.position.x, point.transform.position.y, 0);
             x[0].transform.SetParent(point);
         }
-        Debug.Log("esta Funcionando");
     }
 
     public void Remove()
