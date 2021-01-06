@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09040b9238d64a1439319b3f8c3b750f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeCena: quarto
+  nomeCena: quarto 2
   animEffect: {fileID: 1409035533}
 --- !u!20 &519420031
 Camera:
