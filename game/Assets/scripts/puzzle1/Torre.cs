@@ -64,9 +64,12 @@ public class Torre : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            var v = collision.gameObject.GetComponent<pLife>().vidas -= 1;
+            _Speed = 0;
+            FindObjectOfType<teleport>().gameObject.SetActive(true);
+            var v = collision.gameObject.GetComponent<pLife>().vidas;
+            teleport.nomeCena = SceneManager.GetActiveScene().name;
             PlayerPrefs.SetInt("Vida", v - 1);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            FindObjectOfType<teleport>().gameObject.GetComponent<Animator>().SetTrigger("FadeIn");
         }
     }
 }
