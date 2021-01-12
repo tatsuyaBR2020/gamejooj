@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/quarto 2.unity
     guid: ab34a9482f98c04428e8dece96d38cad
   - enabled: 0
-    path: Assets/Scenes/quarto.unity
+    path: Assets/Scenes/puzzle01.unity
     guid: 63c60f6042335b04288037dbe5df2f5c
   m_configObjects: {}
