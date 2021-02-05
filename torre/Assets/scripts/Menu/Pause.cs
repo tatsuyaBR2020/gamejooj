@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Audio;
 
 public class Pause : MonoBehaviour
@@ -11,7 +12,9 @@ public class Pause : MonoBehaviour
 
     public GameObject _Pause;
     public Slider volControl;
+	public TextMeshProUGUI txtVol;
     public AudioMixer mixer;
+    public Save save;
 
     Player pl;
     bool pausado;
@@ -22,6 +25,7 @@ public class Pause : MonoBehaviour
         _Pause.SetActive(false);
         volControl.maxValue = volMax;
         volControl.minValue = volMin;
+        volControl.value = save.CurrentVol;
     }
 
     // Update is called once per frame
@@ -43,5 +47,7 @@ public class Pause : MonoBehaviour
         }
 
         mixer.SetFloat("Vol", volControl.value);
+        save.CurrentVol = volControl.value;
+		txtVol.text = "volume: " + volControl.value;
     }
 }

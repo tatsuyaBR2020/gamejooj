@@ -29,6 +29,7 @@ public class LifeManager : MonoBehaviour
                 objsLife.Add(objVida);
                 objsLife[i].transform.position = objsLife[i - 1].transform.position + new Vector3(distanciaDasVidas, 0, 0);
             }
+            objVida.transform.SetParent(lifespoint);
         }
     }
 
