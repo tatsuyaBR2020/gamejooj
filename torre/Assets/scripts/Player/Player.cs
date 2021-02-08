@@ -10,13 +10,15 @@ public class Player : MonoBehaviour
     public bool Abriu = false;
     [Header("imports")]
     [SerializeField] GameObject Botao;
+    public GameObject album;
 
     Rigidbody2D rb;
     Vector2 inputs;
     Vector2 direction;
+    bool estaAtivado;
     // Start is called before the first frame update
     void Start()
-    {
+    {  
         rb = GetComponent<Rigidbody2D>();
         Botao.SetActive(false);
         direction = new Vector2(0, -1);
@@ -25,6 +27,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //ABRIR INVENTARIO
+        if (Input.GetKeyDown("i")){
+            estaAtivado = !estaAtivado;
+            album.SetActive(estaAtivado);
+        }
+
+        if (estaAtivado == true){
+            Time.timeScale = 0;
+        }else{
+            Time.timeScale = 1;
+        }
+
+
         inputs.x = Input.GetAxis("Horizontal");
         inputs.y = Input.GetAxis("Vertical");
 
