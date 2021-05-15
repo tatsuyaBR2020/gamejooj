@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf66e4697283de4680ed3d60e5cad5d, type: 3}
+  m_Name: DataBase
+  m_EditorClassIdentifier: 
+  itens:
+  - nome: Carta1
+    descricao: Apenas uma carta
+    itemPrefab: {fileID: 2580382705698825311, guid: 5d366f78dd6a9344f90fc5a90032ca30, type: 3}
+  - nome: Uma carta muito doida
+    descricao: outra carta
+    itemPrefab: {fileID: 4862223186246406352, guid: cc43c9779c4c5db41bc74af34f2b1cfd, type: 3}

@@ -6,7 +6,7 @@ public class LifeManager : MonoBehaviour
 {
     public int life = 5;
     public float distanciaDasVidas = .2f;
-    public GameObject prefab;
+    public GameObject pre;
     public Transform lifespoint;
     public List<GameObject> objsLife = new List<GameObject>();
 
@@ -18,7 +18,7 @@ public class LifeManager : MonoBehaviour
         //life = PlayerPrefs.GetInt("Life");
         for(int i = 0; i < life; i++)
         {
-            GameObject objVida = Instantiate(prefab, transform.position, transform.rotation);
+            GameObject objVida = Instantiate(pre, transform.position, transform.rotation);
             if(i == 0)
             {
                 objsLife.Add(objVida);
@@ -39,7 +39,7 @@ public class LifeManager : MonoBehaviour
         
         if (Input.GetKeyDown("t"))
         {
-            GameObject objVida = Instantiate(prefab, transform.position, transform.rotation);
+            GameObject objVida = Instantiate(pre, transform.position, transform.rotation);
             life++;
             objsLife.Add(objVida);
             objsLife[objsLife.Count - 1].transform.position = objsLife[objsLife.Count - 2].transform.position + new Vector3(distanciaDasVidas, 0, 0);

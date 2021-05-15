@@ -6,4 +6,5 @@ using UnityEngine;
 public class Save : ScriptableObject
 {
     public float CurrentVol;
+    public List<int> invItens;
 }

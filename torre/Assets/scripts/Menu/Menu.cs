@@ -13,8 +13,9 @@ public class Menu : MonoBehaviour
     public AudioMixer mixer;
     public Animator cutScene;
     public Save save;
-
+	public Animator effect;
     bool openOpcoes = false;
+	
 
     void Awake()
     {
@@ -31,14 +32,31 @@ public class Menu : MonoBehaviour
 
     public void Comecar()
     {
-        SceneManager.LoadScene(nomeDaCena);
+		effect.gameObject.SetActive(true);
+        effect.Play("Fade_In");
+		StartCoroutine(comecarJogo());
     }
+	
+	IEnumerator comecarJogo()
+	{
+		yield return new WaitForSeconds(1f);
+		SceneManager.LoadScene(nomeDaCena);
+	}
 
-    public void Opcoes()
+    public void Opcoes(string state)
     {
-        openOpcoes = !openOpcoes;
-        cutScene.SetBool("opcoes", openOpcoes);
+        cutScene.Play(state);
     }
+	
+	public void Aumentar(RectTransform trans)
+	{
+		trans.localScale = new Vector3(1.2f,1.2f,1);
+	}
+	
+	public void Diminuir(RectTransform trans)
+	{
+		trans.localScale = new Vector3(1,1,1);
+	}
 
     public void Sair()
     {

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SaveLoad
   m_EditorClassIdentifier: 
   CurrentVol: 0
+  invItens: 00000000
